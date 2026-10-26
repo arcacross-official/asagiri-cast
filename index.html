@@ -255,7 +255,7 @@ async function saveMember(){
 async function move(id,delta){if(!user)return;const from=members.findIndex(x=>x.id===id),to=from+delta;if(to<0||to>=members.length)return;const reordered=members.slice();[reordered[from],reordered[to]]=[reordered[to],reordered[from]];const batch=writeBatch(db);reordered.forEach((m,i)=>batch.update(doc(db,'casts',m.id),{order:i}));try{await batch.commit()}catch(e){message(e)}}
 function renderAdmin(){const box=$('entries');box.replaceChildren();members.forEach((m,index)=>{const row=node('div');row.className='entry'+(m.active?'':' is-hidden-cast');const dutyButton=node('button');dutyButton.type='button';dutyButton.className='duty-photo-button'+(m.onDuty?' is-duty':'');dutyButton.title=m.name+'：クリックで出勤状態を切り替え';dutyButton.setAttribute('aria-label',m.name+'の出勤を'+(m.onDuty?'解除':'設定'));dutyButton.setAttribute('aria-pressed',String(!!m.onDuty));const img=node('img');img.src=m.photo||placeholder;img.alt=m.name;const dutyLabel=node('span',m.onDuty?'● 出勤中':'○ 未出勤');dutyLabel.className='duty-photo-label';dutyButton.append(img,dutyLabel);dutyButton.onclick=async()=>{if(!user){show('login');return}dutyButton.disabled=true;try{await updateDoc(doc(db,'casts',m.id),{onDuty:!m.onDuty});$('syncStatus').textContent=m.name+' の出勤状態を更新しました'}catch(e){message(e)}finally{dutyButton.disabled=false}};const info=node('div');info.append(node('strong',m.name),node('div',(m.active?'表示中':'非表示')+(m.pinnedRole?' · ★役職者':'')+(m.onDuty?' · ●本日出勤':'')));const edit=node('button','編集');edit.onclick=()=>{editing=m.id;$('name').value=m.name;$('hobby').value=m.hobby||'';$('intro').value=m.intro||'';$('hometown').value=m.hometown||'';$('character').value=m.character||'';$('birthday').value=m.birthday||'';for(const k of ['instagramId','tiktokId','twitterId'])$(k).value=m[k]||'';$('frameStyle').value=m.frameStyle||'normal';$('frameColor').value=/^#[0-9a-f]{6}$/i.test(m.frameColor||'')?m.frameColor:'#b9a888';$('castMark').value=m.castMark||'none';resetPendingGallery();editingGallery=Array.isArray(m.gallery)?[...m.gallery]:[];renderGalleryManage();$('galleryFiles').value='';$('active').checked=!!m.active;$('onDuty').checked=!!m.onDuty;$('pinnedRole').checked=!!m.pinnedRole;$('photo').value='';$('photoUrl').value=m.photo?.startsWith('https://')?m.photo:'';if(photoAdjustObjectUrl){URL.revokeObjectURL(photoAdjustObjectUrl);photoAdjustObjectUrl=null}setPhotoSettings(m);window.scrollTo(0,0)};const visibility=node('button',m.active?'👁 表示中':'🙈 非表示');visibility.type='button';visibility.className='secondary visibility-toggle';visibility.title='お客様画面の表示・非表示を即時切替';visibility.onclick=async()=>{if(!user)return;visibility.disabled=true;try{await updateDoc(doc(db,'casts',m.id),{active:!m.active});$('syncStatus').textContent=m.name+' を'+(m.active?'非表示':'表示')+'に変更しました'}catch(e){message(e)}finally{visibility.disabled=false}};const controls=node('div');controls.className='order-controls';const up=node('button','↑');up.title='上に移動';const down=node('button','↓');down.title='下に移動';up.disabled=index===0;down.disabled=index===members.length-1;up.onclick=()=>move(m.id,-1);down.onclick=()=>move(m.id,1);controls.append(up,down);const del=node('button','削除');del.className='secondary';del.onclick=async()=>{if(confirm(m.name+'を削除しますか？')){try{await deleteDoc(doc(db,'casts',m.id))}catch(e){message(e)}}};row.append(dutyButton,info,visibility,controls,edit,del);box.append(row)})}
 
-function posterLayout(n){if(n<=5)return {cols:n,rows:1};if(n<=8)return {cols:4,rows:Math.ceil(n/4)};if(n<=12)return {cols:6,rows:Math.ceil(n/6)};if(n<=16)return {cols:8,rows:Math.ceil(n/8)};if(n<=24)return {cols:8,rows:Math.ceil(n/8)};const cols=Math.max(8,Math.ceil(Math.sqrt(n*3)));return {cols,rows:Math.ceil(n/cols)}}
+function posterLayout(n){if(n<=8)return {cols:n,rows:1};if(n<=16)return {cols:Math.ceil(n/2),rows:2};if(n<=24)return {cols:Math.ceil(n/3),rows:3};const cols=Math.ceil(Math.sqrt(n*3.4));return {cols,rows:Math.ceil(n/cols)}}
 function posterRounded(ctx,x,y,w,h,r){ctx.beginPath();ctx.roundRect(x,y,w,h,Math.min(r,w/3,h/3))}
 function posterLoad(src){return new Promise(resolve=>{if(!src){resolve(null);return}const im=new Image();im.crossOrigin='anonymous';im.onload=()=>resolve(im);im.onerror=()=>resolve(null);im.src=src})}
 function posterFitText(ctx,text,maxWidth,base,min){let size=base;while(size>min){ctx.font=`600 ${size}px sans-serif`;if(ctx.measureText(text).width<=maxWidth)break;size-=1}ctx.font=`600 ${size}px sans-serif`;return size}
@@ -267,35 +267,53 @@ async function generatePoster(){
  try{
  const canvas=$('posterCanvas'),W=Number($('posterSize').value),H=Math.round(W*9/16),scale=W/1200;canvas.width=W;canvas.height=H;
  const ctx=canvas.getContext('2d');ctx.scale(scale,scale);const w=1200,h=675;
- const bg=ctx.createLinearGradient(0,0,w,h);bg.addColorStop(0,'#100d0b');bg.addColorStop(.55,'#302117');bg.addColorStop(1,'#15100e');ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
- ctx.strokeStyle='#9c7848';ctx.lineWidth=2;ctx.strokeRect(17,17,w-34,h-34);ctx.strokeStyle='#5d4831';ctx.strokeRect(24,24,w-48,h-48);
+ const bg=ctx.createLinearGradient(0,0,w,h);bg.addColorStop(0,'#132b30');bg.addColorStop(.5,'#201d24');bg.addColorStop(1,'#4a2528');ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
+ // 青海波風の扇形模様。写真の邪魔にならない濃度で描く。
+ ctx.save();ctx.strokeStyle='rgba(208,174,116,.12)';ctx.lineWidth=1.4;
+ for(let yy=42;yy<675;yy+=44){for(let xx=(Math.floor(yy/44)%2)*44-44;xx<1240;xx+=88){for(let r=15;r<=42;r+=13){ctx.beginPath();ctx.arc(xx,yy,r,Math.PI,2*Math.PI);ctx.stroke()}}}ctx.restore();
+ ctx.strokeStyle='#c9a06c';ctx.lineWidth=2;ctx.strokeRect(16,16,w-32,h-32);ctx.strokeStyle='rgba(222,180,110,.48)';ctx.lineWidth=1;ctx.strokeRect(22,22,w-44,h-44);
+ ctx.fillStyle='rgba(9,15,22,.8)';ctx.fillRect(30,30,1140,110);
  const day=$('posterDate').value||localDateISO();const [yr,mo,da]=day.split('-');
  const eventTitle=$('posterEvent').value.trim(),eventDetail=$('posterEventDetail').value.trim();const hasEvent=!!(eventTitle||eventDetail);
- ctx.textAlign='center';ctx.fillStyle='#cfb17e';ctx.font='500 15px sans-serif';ctx.fillText('JAPANESE CONCEPT CAFE  ·  ASAGIRI',600,58);
- ctx.fillStyle='#f5d7a1';ctx.font='bold 45px serif';ctx.fillText('朝 霧',600,108);
- ctx.font='600 22px sans-serif';ctx.fillText('本日の出勤キャスト',600,141);
- ctx.fillStyle='#c4ad8a';ctx.font='16px sans-serif';ctx.fillText(`${yr}.${mo}.${da}   |   TODAY’S CAST`,600,166);
- if(hasEvent){ctx.fillStyle='#e4bd7d';posterFitText(ctx,eventTitle||'特別イベント',1050,22,12);ctx.fillText(eventTitle||'特別イベント',600,192);if(eventDetail){ctx.fillStyle='#f1dfc1';posterFitText(ctx,eventDetail,1070,15,10);ctx.fillText(eventDetail,600,215)}}
- const {cols,rows}=posterLayout(list.length);const top=hasEvent?229:185,bottom=hasEvent?575:591,availH=bottom-top;const side=48,gapX=8,gapY=12;
- // Portrait-first cards: keep each photo close to 3:4 while fitting all casts in one landscape poster.
+ ctx.textAlign='left';ctx.fillStyle='#e2b97b';ctx.font='500 13px sans-serif';ctx.fillText('JAPANESE CONCEPT CAFE  ·  ASAGIRI',48,51);
+ ctx.fillStyle='#f7e3b9';ctx.font='bold 40px serif';ctx.fillText('朝 霧',47,96);
+ ctx.font='bold 19px sans-serif';ctx.fillText('本日の出勤キャスト',210,86);
+ ctx.fillStyle='#c9d5d1';ctx.font='15px sans-serif';ctx.fillText(`${yr}.${mo}.${da}  |  TODAY’S CAST`,210,111);
+ if(hasEvent){
+   const ex=755,ey=39,ew=404,eh=93;
+   ctx.fillStyle='#642d36';posterRounded(ctx,ex,ey,ew,eh,8);ctx.fill();
+   ctx.strokeStyle='#e9bc80';ctx.lineWidth=1.5;posterRounded(ctx,ex,ey,ew,eh,8);ctx.stroke();
+   ctx.textAlign='left';ctx.fillStyle='#f9d69d';ctx.font='bold 12px sans-serif';ctx.fillText('✦ 本日のイベント・特別告知',ex+15,ey+20);
+   ctx.fillStyle='#fff2db';posterFitText(ctx,eventTitle||'特別イベント',ew-30,22,12);ctx.fillText(eventTitle||'特別イベント',ex+15,ey+48);
+   if(eventDetail){ctx.fillStyle='#f6d7c7';posterFitText(ctx,eventDetail,ew-30,14,10);ctx.fillText(eventDetail,ex+15,ey+73)}
+ }
+ const {cols,rows}=posterLayout(list.length);
+ const top=151,bottom=597,availH=bottom-top;
+ const side=33,gapX=7,gapY=10;
  const maxCellW=(1200-side*2-(cols-1)*gapX)/cols;
- const cellH=(availH-(rows-1)*gapY)/rows;
- const nameH=Math.max(20,Math.min(32,cellH*.15));
- const imgH=cellH-nameH;
- const cellW=Math.min(maxCellW,imgH*0.75);
+ const maxCellH=(availH-(rows-1)*gapY)/rows;
+ const nameH=rows===1?31:Math.max(20,Math.min(27,maxCellH*.17));
+ // 写真を可能な限り大きくする。写真の縦横比は維持し、枠内だけトリミング。
+ const portraitRatio=rows===1?.48:.66;
+ const cellW=Math.min(maxCellW,(maxCellH-nameH)*portraitRatio);
+ const imgH=Math.min(maxCellH-nameH,cellW/portraitRatio);
+ const cellH=imgH+nameH;
+ const groupHeight=rows*cellH+(rows-1)*gapY;
+ const groupTop=top+(availH-groupHeight)/2;
 
  const photos=await Promise.all(list.map(m=>posterLoad(m.photo)));
  list.forEach((m,i)=>{
  const r=Math.floor(i/cols),c=i%cols,itemsInRow=Math.min(cols,list.length-r*cols),rowWidth=itemsInRow*cellW+(itemsInRow-1)*gapX;
- const x=(1200-rowWidth)/2+c*(cellW+gapX),y=top+r*(cellH+gapY);
+ const x=(1200-rowWidth)/2+c*(cellW+gapX),y=groupTop+r*(cellH+gapY);
  ctx.fillStyle='#3e3027';posterRounded(ctx,x,y,cellW,cellH,5);ctx.fill();
  ctx.save();posterRounded(ctx,x,y,cellW,imgH,4);ctx.clip();const im=photos[i];if(im){const z=photoSettings(m),zoom=z.zoom/100;const ratio=Math.max(cellW/im.width,imgH/im.height)*zoom;const dw=im.width*ratio,dh=im.height*ratio;const ix=x+(cellW-dw)*(z.x/100),iy=y+(imgH-dh)*(z.y/100);ctx.drawImage(im,ix,iy,dw,dh)}else{ctx.fillStyle='#574437';ctx.fillRect(x,y,cellW,imgH);ctx.fillStyle='#d0b996';ctx.font=`${Math.min(18,cellW*.17)}px sans-serif`;ctx.textAlign='center';ctx.fillText('NO PHOTO',x+cellW/2,y+imgH/2)}ctx.restore();
  ctx.fillStyle='#241b17';ctx.fillRect(x,y+imgH,cellW,nameH);ctx.fillStyle='#f5dfb8';ctx.textAlign='center';const base=Math.min(20,Math.max(10,cellW*.16),nameH*.62);posterFitText(ctx,m.name||'キャスト',cellW-8,base,8);ctx.fillText(m.name||'キャスト',x+cellW/2,y+imgH+nameH*.69);
  ctx.strokeStyle='#b99562';ctx.lineWidth=1.3;posterRounded(ctx,x,y,cellW,cellH,4);ctx.stroke();
  });
- ctx.textAlign='center';ctx.fillStyle='#e5c798';ctx.font='bold 17px sans-serif';ctx.fillText('和装メンズコンカフェ 朝霧',600,618);
- ctx.fillStyle='#e0c29a';ctx.font='bold 17px sans-serif';ctx.fillText('営業時間 19:00〜24:00（LO：23:30）',600,644);
- ctx.fillStyle='#a88962';ctx.font='12px sans-serif';ctx.fillText(`本日出勤 ${list.length}名`,600,661);
+ ctx.fillStyle='rgba(8,18,24,.93)';ctx.fillRect(30,604,1140,43);
+ ctx.textAlign='left';ctx.fillStyle='#f2dbaf';ctx.font='bold 17px sans-serif';ctx.fillText('和装メンズコンカフェ 朝霧',49,632);
+ ctx.textAlign='right';ctx.fillStyle='#e7d2b2';ctx.font='bold 16px sans-serif';ctx.fillText('営業時間 19:00〜24:00（LO：23:30）',1150,632);
+ ctx.textAlign='center';ctx.fillStyle='#c7a476';ctx.font='11px sans-serif';ctx.fillText(`本日出勤 ${list.length}名`,600,660);
  canvas.style.display='block';$('posterDownload').classList.remove('hidden');$('posterStatus').textContent=`${list.length}名の画像を生成しました（${W}×${H}px）。「PNG画像を保存」を押してください。`;
  }catch(e){console.error(e);$('posterStatus').textContent='画像生成に失敗しました：'+(e?.message||'不明なエラー')}finally{btn.disabled=false}
 }
