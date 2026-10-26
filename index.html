@@ -256,10 +256,11 @@ async function saveMember(){
 async function move(id,delta){if(!user)return;const from=members.findIndex(x=>x.id===id),to=from+delta;if(to<0||to>=members.length)return;const reordered=members.slice();[reordered[from],reordered[to]]=[reordered[to],reordered[from]];const batch=writeBatch(db);reordered.forEach((m,i)=>batch.update(doc(db,'casts',m.id),{order:i}));try{await batch.commit()}catch(e){message(e)}}
 function renderAdmin(){const box=$('entries');box.replaceChildren();members.forEach((m,index)=>{const row=node('div');row.className='entry'+(m.active?'':' is-hidden-cast');const dutyButton=node('button');dutyButton.type='button';dutyButton.className='duty-photo-button'+(m.onDuty?' is-duty':'');dutyButton.title=m.name+'：クリックで出勤状態を切り替え';dutyButton.setAttribute('aria-label',m.name+'の出勤を'+(m.onDuty?'解除':'設定'));dutyButton.setAttribute('aria-pressed',String(!!m.onDuty));const img=node('img');img.src=m.photo||placeholder;img.alt=m.name;const dutyLabel=node('span',m.onDuty?'● 出勤中':'○ 未出勤');dutyLabel.className='duty-photo-label';dutyButton.append(img,dutyLabel);dutyButton.onclick=async()=>{if(!user){show('login');return}dutyButton.disabled=true;try{await updateDoc(doc(db,'casts',m.id),{onDuty:!m.onDuty});$('syncStatus').textContent=m.name+' の出勤状態を更新しました'}catch(e){message(e)}finally{dutyButton.disabled=false}};const info=node('div');info.append(node('strong',m.name),node('div',(m.active?'表示中':'非表示')+(m.pinnedRole?' · ★役職者':'')+(m.onDuty?' · ●本日出勤':'')));const edit=node('button','編集');edit.onclick=()=>{editing=m.id;$('name').value=m.name;$('hobby').value=m.hobby||'';$('intro').value=m.intro||'';$('hometown').value=m.hometown||'';$('character').value=m.character||'';$('birthday').value=m.birthday||'';for(const k of ['instagramId','tiktokId','twitterId'])$(k).value=m[k]||'';$('frameStyle').value=m.frameStyle||'normal';$('frameColor').value=/^#[0-9a-f]{6}$/i.test(m.frameColor||'')?m.frameColor:'#b9a888';$('castMark').value=m.castMark||'none';resetPendingGallery();editingGallery=Array.isArray(m.gallery)?[...m.gallery]:[];renderGalleryManage();$('galleryFiles').value='';$('active').checked=!!m.active;$('onDuty').checked=!!m.onDuty;$('pinnedRole').checked=!!m.pinnedRole;$('roleName').value=m.roleName||'';$('photo').value='';$('photoUrl').value=m.photo?.startsWith('https://')?m.photo:'';if(photoAdjustObjectUrl){URL.revokeObjectURL(photoAdjustObjectUrl);photoAdjustObjectUrl=null}setPhotoSettings(m);window.scrollTo(0,0)};const visibility=node('button',m.active?'👁 表示中':'🙈 非表示');visibility.type='button';visibility.className='secondary visibility-toggle';visibility.title='お客様画面の表示・非表示を即時切替';visibility.onclick=async()=>{if(!user)return;visibility.disabled=true;try{await updateDoc(doc(db,'casts',m.id),{active:!m.active});$('syncStatus').textContent=m.name+' を'+(m.active?'非表示':'表示')+'に変更しました'}catch(e){message(e)}finally{visibility.disabled=false}};const controls=node('div');controls.className='order-controls';const up=node('button','↑');up.title='上に移動';const down=node('button','↓');down.title='下に移動';up.disabled=index===0;down.disabled=index===members.length-1;up.onclick=()=>move(m.id,-1);down.onclick=()=>move(m.id,1);controls.append(up,down);const del=node('button','削除');del.className='secondary';del.onclick=async()=>{if(confirm(m.name+'を削除しますか？')){try{await deleteDoc(doc(db,'casts',m.id))}catch(e){message(e)}}};row.append(dutyButton,info,visibility,controls,edit,del);box.append(row)})}
 
-function posterLayout(n){if(n<=8)return {cols:n,rows:1};if(n<=16)return {cols:Math.ceil(n/2),rows:2};if(n<=24)return {cols:Math.ceil(n/3),rows:3};const cols=Math.ceil(Math.sqrt(n*3.4));return {cols,rows:Math.ceil(n/cols)}}
+function posterLayout(n){if(n<=8)return {cols:n,rows:1};if(n<=16)return {cols:Math.ceil(n/2),rows:2};if(n<=24)return {cols:Math.ceil(n/3),rows:3};return {cols:Math.ceil(n/4),rows:4}}
 function posterRounded(ctx,x,y,w,h,r){ctx.beginPath();ctx.roundRect(x,y,w,h,Math.min(r,w/3,h/3))}
 function posterLoad(src){return new Promise(resolve=>{if(!src){resolve(null);return}const im=new Image();im.crossOrigin='anonymous';im.onload=()=>resolve(im);im.onerror=()=>resolve(null);im.src=src})}
 function posterFitText(ctx,text,maxWidth,base,min){let size=base;while(size>min){ctx.font=`600 ${size}px sans-serif`;if(ctx.measureText(text).width<=maxWidth)break;size-=1}ctx.font=`600 ${size}px sans-serif`;return size}
+function posterEllipsis(ctx,text,maxWidth){text=String(text||'');if(ctx.measureText(text).width<=maxWidth)return text;while(text.length>1&&ctx.measureText(text+'…').width>maxWidth)text=text.slice(0,-1);return text+'…'}
 async function generatePoster(){
  if(!user){alert('管理者ログインが必要です');return}
  const list=members.filter(m=>m.active&&m.onDuty).sort((a,b)=>Number(!!b.pinnedRole)-Number(!!a.pinnedRole)||(a.order??0)-(b.order??0));
@@ -293,8 +294,8 @@ async function generatePoster(){
    ctx.fillStyle='#d7aa6c';posterRounded(ctx,ex+ew/2-49,ey-9,98,22,5);ctx.fill();
    ctx.fillStyle='#29171b';ctx.textAlign='center';ctx.font='bold 13px serif';ctx.fillText('✦ EVENT ✦',ex+ew/2,ey+6);
    ctx.textAlign='left';ctx.fillStyle='#f9d69d';ctx.font='bold 12px sans-serif';ctx.fillText('本日の特別イベント',ex+18,ey+30);
-   ctx.fillStyle='#fff2db';posterFitText(ctx,eventTitle||'特別イベント',ew-38,28,13);ctx.fillText(eventTitle||'特別イベント',ex+18,ey+65);
-   if(eventDetail){ctx.strokeStyle='rgba(245,200,130,.7)';ctx.beginPath();ctx.moveTo(ex+18,ey+73);ctx.lineTo(ex+ew-18,ey+73);ctx.stroke();ctx.fillStyle='#ffe0c5';posterFitText(ctx,eventDetail,ew-38,13,9);ctx.fillText(eventDetail,ex+18,ey+92)}
+   ctx.fillStyle='#fff2db';posterFitText(ctx,eventTitle||'特別イベント',ew-38,28,13);ctx.fillText(posterEllipsis(ctx,eventTitle||'特別イベント',ew-38),ex+18,ey+65);
+   if(eventDetail){ctx.strokeStyle='rgba(245,200,130,.7)';ctx.beginPath();ctx.moveTo(ex+18,ey+73);ctx.lineTo(ex+ew-18,ey+73);ctx.stroke();ctx.fillStyle='#ffe0c5';posterFitText(ctx,eventDetail,ew-38,13,9);ctx.fillText(posterEllipsis(ctx,eventDetail,ew-38),ex+18,ey+92)}
    ctx.restore();
  }
  const {cols,rows}=posterLayout(list.length);
@@ -303,9 +304,9 @@ async function generatePoster(){
  const maxCellW=(1200-side*2-(cols-1)*gapX)/cols;
  const maxCellH=(availH-(rows-1)*gapY)/rows;
  const hasRoles=list.some(m=>m.pinnedRole);
- const nameH=hasRoles?(rows===1?55:Math.max(39,Math.min(48,maxCellH*.26))):(rows===1?31:Math.max(20,Math.min(27,maxCellH*.17)));
+ const nameH=hasRoles?(rows===1?60:rows===2?54:rows===3?42:34):(rows===1?35:rows===2?34:rows===3?28:25);
  // 写真を可能な限り大きくする。写真の縦横比は維持し、枠内だけトリミング。
- const portraitRatio=rows===1?.59:.72;
+ const portraitRatio=rows===1?.59:rows===2?.72:rows===3?1.05:1.28;
  const cellW=Math.min(maxCellW,(maxCellH-nameH)*portraitRatio);
  const imgH=Math.min(maxCellH-nameH,cellW/portraitRatio);
  const cellH=imgH+nameH;
@@ -319,7 +320,7 @@ async function generatePoster(){
  ctx.fillStyle='#3e3027';posterRounded(ctx,x,y,cellW,cellH,5);ctx.fill();
  ctx.save();posterRounded(ctx,x,y,cellW,imgH,4);ctx.clip();const im=photos[i];if(im){const z=photoSettings(m),zoom=z.zoom/100;const ratio=Math.max(cellW/im.width,imgH/im.height)*zoom;const dw=im.width*ratio,dh=im.height*ratio;const ix=x+(cellW-dw)*(z.x/100),iy=y+(imgH-dh)*(z.y/100);ctx.drawImage(im,ix,iy,dw,dh)}else{ctx.fillStyle='#574437';ctx.fillRect(x,y,cellW,imgH);ctx.fillStyle='#d0b996';ctx.font=`${Math.min(18,cellW*.17)}px sans-serif`;ctx.textAlign='center';ctx.fillText('NO PHOTO',x+cellW/2,y+imgH/2)}ctx.restore();
  ctx.fillStyle='#241b17';ctx.fillRect(x,y+imgH,cellW,nameH);
- if(!m.pinnedRole){ctx.fillStyle='#f5dfb8';ctx.textAlign='center';const base=Math.min(20,Math.max(10,cellW*.16),nameH*.62);posterFitText(ctx,m.name||'キャスト',cellW-8,base,8);ctx.fillText(m.name||'キャスト',x+cellW/2,y+imgH+nameH*.69);}
+ if(!m.pinnedRole){ctx.fillStyle='#f5dfb8';ctx.textAlign='center';const base=Math.min(20,Math.max(10,cellW*.16),nameH*.62);posterFitText(ctx,m.name||'キャスト',cellW-8,base,8);ctx.fillText(posterEllipsis(ctx,m.name||'キャスト',cellW-8),x+cellW/2,y+imgH+nameH*.69);}
  ctx.strokeStyle='#b99562';ctx.lineWidth=1.3;posterRounded(ctx,x,y,cellW,cellH,4);ctx.stroke();
  if(m.pinnedRole){
    ctx.save();
@@ -330,14 +331,22 @@ async function generatePoster(){
    for(const [px,py,sx,sy] of [[x+5,y+5,1,1],[x+cellW-5,y+5,-1,1],[x+5,y+cellH-5,1,-1],[x+cellW-5,y+cellH-5,-1,-1]]){
      ctx.beginPath();ctx.moveTo(px+sx*corner,py);ctx.lineTo(px,py);ctx.lineTo(px,py+sy*corner);ctx.stroke();
    }
-   ctx.fillStyle='#171411';ctx.fillRect(x+8,y+imgH+3,cellW-16,nameH-6);
-   ctx.textAlign='center';ctx.fillStyle='#f9dda0';
+   // Separate, clipped rows prevent role/name collisions for every cast count.
+   const bandY=y+imgH,roleH=rows<=2?23:rows===3?18:15,nameRowH=nameH-roleH;
+   ctx.save();ctx.beginPath();ctx.rect(x+8,bandY+2,cellW-16,nameH-4);ctx.clip();
+   ctx.fillStyle='#372717';ctx.fillRect(x+4,bandY+2,cellW-8,roleH-1);
+   ctx.fillStyle='#14110e';ctx.fillRect(x+4,bandY+roleH,cellW-8,nameRowH-2);
+   ctx.textAlign='center';ctx.textBaseline='middle';
+   ctx.fillStyle='#e8c58b';
    const role=m.roleName||'役職者';
-   posterFitText(ctx,role,cellW-20,Math.min(12,cellW*.11),8);
-   ctx.fillText(role,x+cellW/2,y+imgH+nameH*.35);
-   ctx.strokeStyle='rgba(218,177,109,.65)';ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(x+15,y+imgH+nameH*.44);ctx.lineTo(x+cellW-15,y+imgH+nameH*.44);ctx.stroke();
-   posterFitText(ctx,m.name||'キャスト',cellW-20,Math.min(20,cellW*.16,nameH*.38),10);
-   ctx.fillText(m.name||'キャスト',x+cellW/2,y+imgH+nameH*.83);
+   posterFitText(ctx,role,cellW-18,rows>=4?9:11,7);
+   ctx.fillText(posterEllipsis(ctx,role,cellW-18),x+cellW/2,bandY+roleH/2+1);
+   ctx.strokeStyle='rgba(218,177,109,.6)';ctx.lineWidth=.7;
+   ctx.beginPath();ctx.moveTo(x+10,bandY+roleH);ctx.lineTo(x+cellW-10,bandY+roleH);ctx.stroke();
+   ctx.fillStyle='#fff0d0';
+   posterFitText(ctx,m.name||'キャスト',cellW-18,Math.min(18,nameRowH*.62),8);
+   ctx.fillText(posterEllipsis(ctx,m.name||'キャスト',cellW-18),x+cellW/2,bandY+roleH+nameRowH/2);
+   ctx.restore();
    ctx.restore();
  }
  });
