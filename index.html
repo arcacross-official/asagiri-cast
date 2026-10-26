@@ -1,0 +1,284 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#121528"><title>朝霧 | キャスト一覧</title><style>:root{font-family:system-ui,sans-serif;color:#f5e9cb;background:#111527}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#303454,#111527 65%);min-height:100vh}header{text-align:center;padding:26px 12px;border-bottom:1px solid #9c8150}h1{font-family:serif;letter-spacing:.12em;margin:5px}p{line-height:1.6}.sub{color:#c9b58a}.wrap{max-width:1000px;margin:auto;padding:18px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:15px}.card,.panel{background:#20243b;border:1px solid #9e8251;border-radius:12px;padding:12px}.card{cursor:pointer;text-align:center}.card img{width:100%;height:185px;object-fit:cover;border-radius:8px;background:#353954}.card strong{display:block;margin-top:8px}button,input,textarea{font:inherit}button{border:1px solid #d9bd7d;background:#51402c;color:#fff2d2;border-radius:9px;padding:11px 16px;cursor:pointer;margin:4px}button.secondary{background:#252b43}button:disabled{opacity:.45;cursor:not-allowed}.card.picked{border:3px solid #eac979;box-shadow:0 0 0 2px #7b5c27 inset}.card.picked:after{content:"✓ 選択中";display:block;color:#f6d786;margin-top:5px}input,textarea{background:#11172b;color:white;border:1px solid #8e805f;border-radius:6px;padding:10px;width:100%;margin:5px 0 12px}textarea{min-height:70px}.hidden{display:none!important}.center{text-align:center}.detail{max-width:530px;margin:auto}.portrait{max-width:280px;width:100%;height:320px;object-fit:cover;border-radius:10px;background:#353954}.status{color:#dfc58b;font-size:13px}footer{text-align:center;padding:28px;color:#aa9c7e}label{display:block;margin-top:8px}.entry{display:flex;gap:12px;align-items:center;border-bottom:1px solid #61553f;padding:10px 0}.entry img{width:60px;height:70px;object-fit:cover}.entry>div{flex:1}.order-controls{display:flex;flex-direction:column;gap:3px}.order-controls button{padding:5px 10px;margin:1px;min-width:44px}.topbar{display:flex;justify-content:space-between;align-items:center;gap:8px}.small{font-size:13px;color:#c9b58a}.selected-panel{margin-top:25px;padding:18px;background:#1b2036;border:1px solid #b89b62;border-radius:14px}.selected-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.selected-item{position:relative;text-align:center;background:#292d45;border:1px solid #b89b62;border-radius:10px;padding:9px;min-width:0}.selected-item img{width:100%;height:125px;object-fit:cover;border-radius:7px}.selected-item strong{display:block;margin-top:6px;overflow-wrap:anywhere}.selected-item .remove{position:absolute;right:2px;top:2px;border-radius:50%;width:30px;height:30px;padding:0;margin:0;background:#6a3040;font-weight:bold}.slot{border:1px dashed #756a59;border-radius:10px;min-height:175px;display:flex;align-items:center;justify-content:center;color:#a99a7e;text-align:center;font-size:13px}@media(max-width:420px){.selected-grid{gap:6px}.selected-item{padding:5px}.selected-item img{height:95px}.slot{min-height:145px}}
+/* Cast enhancements */
+.card{position:relative;overflow:visible}.frame-normal{--frame:#b9a888;border:2px solid var(--frame)}.frame-double{--frame:#b9a888;border:4px double var(--frame)}.frame-corner{--frame:#b9a888;border:2px solid var(--frame);box-shadow:inset 0 0 0 3px #20243b,inset 0 0 0 4px var(--frame)}.frame-elegant{--frame:#b9a888;border:2px solid var(--frame);box-shadow:0 0 0 1px var(--frame),0 4px 18px #0005}.frame-elegant:before,.frame-corner:before{content:'✦';position:absolute;right:7px;bottom:5px;color:var(--frame);font-size:13px;pointer-events:none}.card.picked{outline:2px solid #eac979;outline-offset:2px}.cast-badges{position:absolute;top:-9px;left:-7px;display:flex;flex-direction:column;align-items:flex-start;gap:3px;z-index:2;pointer-events:none}.cast-badge{font-size:10px;font-weight:800;letter-spacing:.03em;background:#d8bd7b;color:#272334;padding:4px 7px;border-radius:5px;box-shadow:0 2px 6px #0008}.cast-badge.hot{background:#d96c67;color:white}.cast-badge.new{background:#f0d68b}.cast-badge.birthday{background:#e3a4c4;color:#33233b}.selected-panel.top-selection{margin:0 0 22px;padding:12px}.top-selection .selected-item img{height:85px}.top-selection .slot{min-height:120px}.top-selection .selected-item{padding:5px}.top-selection .selected-item strong{font-size:12px}.top-selection .selected-grid{gap:7px}.bio-box{text-align:left;margin:18px auto;border:1px solid #aa9265;border-radius:10px;padding:14px;background:#171c31}.bio-box h3{font-size:14px;color:#e6cb93;margin:0 0 9px;letter-spacing:.08em}.bio-box p{white-space:pre-wrap;margin:0;color:#f3e8d2}.profile-fields{text-align:left;max-width:320px;margin:14px auto}.profile-fields p{margin:6px 0}.gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.gallery-grid img{width:100%;height:115px;object-fit:cover;border-radius:8px;cursor:pointer;border:1px solid #a28a5c}.gallery-manage{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}.gallery-manage .gallery-unit{display:flex;flex-direction:column;gap:3px;padding:5px;border:1px solid #77674d;border-radius:8px;background:#171c31}.gallery-manage .gallery-buttons{display:flex;gap:2px}.gallery-manage .gallery-buttons button{position:static;padding:4px 8px;margin:0;font-size:12px}.entry .visibility-toggle{font-size:12px;padding:7px 9px}.entry.is-hidden-cast{opacity:.68}.gallery-manage div{position:relative}.gallery-manage img{width:82px;height:96px;object-fit:cover;border-radius:6px}.gallery-manage button{position:absolute;top:0;right:0;padding:2px 6px;background:#873c4b}.modal-photo{position:fixed;inset:0;background:#000e;display:flex;align-items:center;justify-content:center;z-index:100;padding:25px;cursor:pointer}.modal-photo img{max-width:95vw;max-height:90vh;object-fit:contain}.frame-preview{border:1px solid #796b54;border-radius:8px;padding:12px;margin:8px 0;color:#dcc79d}.field-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}select{font:inherit;background:#11172b;color:white;border:1px solid #8e805f;border-radius:6px;padding:10px;width:100%;margin:5px 0 12px}
+
+/* Rich frame choices: elegant embellishments without covering cast faces */
+.frame-royal,.frame-floral,.frame-celestial,.frame-lace{position:relative;border:3px solid var(--frame);isolation:isolate}
+.frame-royal{box-shadow:inset 0 0 0 3px #20243b,inset 0 0 0 5px var(--frame),0 5px 18px #0006;border-radius:13px}
+.frame-royal::before{content:'❖';position:absolute;top:-15px;left:50%;transform:translateX(-50%);padding:0 9px;background:#20243b;color:var(--frame);font-size:22px;z-index:1}
+.frame-royal::after{content:'❖';position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);padding:0 9px;background:#20243b;color:var(--frame);font-size:20px}
+.frame-floral{border-radius:16px 5px 16px 5px;box-shadow:inset 0 0 0 2px #20243b,inset 0 0 0 3px var(--frame)}
+.frame-floral::before{content:'❀';position:absolute;top:-15px;right:-10px;color:var(--frame);font-size:29px;text-shadow:0 1px 4px #111527;background:#20243b;border-radius:50%;line-height:1}
+.frame-floral::after{content:'❀';position:absolute;bottom:-15px;left:-10px;color:var(--frame);font-size:29px;text-shadow:0 1px 4px #111527;background:#20243b;border-radius:50%;line-height:1}
+.frame-celestial{border-radius:13px;box-shadow:0 0 0 2px #20243b,0 0 0 3px var(--frame),0 0 15px color-mix(in srgb,var(--frame),transparent 65%)}
+.frame-celestial::before{content:'☾ ✧';position:absolute;top:-15px;right:7px;color:var(--frame);font-size:22px;line-height:1;background:#20243b;padding:0 5px}
+.frame-celestial::after{content:'✦ ✧ ✦';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);color:var(--frame);font-size:14px;letter-spacing:3px;background:#20243b;padding:0 7px;white-space:nowrap}
+.frame-lace{border-radius:15px;border:3px double var(--frame);outline:1px dotted var(--frame);outline-offset:3px;box-shadow:inset 0 0 0 3px #20243b,inset 0 0 0 4px var(--frame)}
+.frame-lace::before{content:'✧';position:absolute;top:-13px;right:-8px;font-size:23px;color:var(--frame);background:#20243b;line-height:1}
+.frame-lace::after{content:'✧';position:absolute;bottom:-13px;left:-8px;font-size:23px;color:var(--frame);background:#20243b;line-height:1}
+.bio-box:has(> #detailIntro),#previewBio{padding:15px 18px;background:transparent;border:1px solid #aa9265;border-radius:10px}
+.preview-overlay{position:fixed;inset:0;background:#050714df;z-index:80;overflow-y:auto;padding:20px 12px}
+.preview-window{max-width:800px;margin:10px auto;background:#20243b;border:1px solid #b9a888;border-radius:16px;padding:18px;box-shadow:0 15px 60px #000a}
+.preview-window .topbar{flex-wrap:wrap}.preview-window h2{margin:6px 0}
+.preview-content{display:grid;grid-template-columns:minmax(155px,220px) minmax(0,1fr);gap:24px;align-items:start;margin:16px 0}
+.preview-card{max-width:200px;margin:18px auto;cursor:default}.preview-detail{background:#171c31;border:1px solid #796b54;border-radius:12px;padding:15px;text-align:center}.preview-detail .portrait{height:260px;max-width:230px}.preview-detail .bio-box{margin:12px 0}.preview-detail .profile-fields{margin:12px auto}.preview-detail .gallery-grid img{height:90px}
+@media(max-width:560px){.preview-content{grid-template-columns:1fr;gap:10px}.preview-card{max-width:190px}.preview-window{padding:12px}}
+
+/* 管理者プレビュー */
+.admin-preview-modal{position:fixed;inset:0;z-index:1000;background:rgba(5,7,17,.92);overflow-y:auto;padding:18px 12px}
+.admin-preview-content{max-width:800px;margin:20px auto;background:#20243b;border:1px solid #b89b62;border-radius:16px;padding:18px}
+.admin-preview-content .preview-grid{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:22px;align-items:start}
+.admin-preview-content .preview-card{max-width:220px;margin:auto;width:100%}
+.admin-preview-content .preview-profile{min-width:0;text-align:center}
+.admin-preview-content .preview-profile>img{width:min(100%,260px);height:300px;object-fit:cover;border-radius:10px}
+.admin-preview-content .preview-profile .bio-box{margin:12px 0}
+@media(max-width:560px){.admin-preview-content .preview-grid{grid-template-columns:1fr}}
+.attendance-options{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0;padding:10px 12px;border:1px solid #786846;border-radius:10px;background:#171c31}.attendance-options label{margin:0}.duty-badge{display:block;position:relative;z-index:2;margin:5px auto 0;padding:3px 8px;width:max-content;max-width:100%;border:1px solid #80cba3;border-radius:20px;background:#183f33;color:#c5f5d6;font-size:11px;font-weight:700;letter-spacing:.03em}
+/* 管理画面：宣材写真タップで出勤を即時切り替え */
+.duty-photo-button{position:relative;display:block;flex:0 0 76px;width:76px;padding:3px;margin:0;border:2px solid #746b5b;border-radius:10px;background:#1a2034;overflow:hidden;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.duty-photo-button img{display:block;width:100%;height:86px;object-fit:cover;border-radius:5px}
+.duty-photo-button.is-duty{border-color:#5bd7a0;box-shadow:0 0 0 2px rgba(91,215,160,.18)}
+.duty-photo-label{position:absolute;bottom:3px;left:3px;right:3px;padding:3px 1px;border-radius:4px;background:rgba(10,17,30,.9);color:#e9e1d2;font-size:10px;font-weight:700;text-align:center;white-space:nowrap}
+.duty-photo-button.is-duty .duty-photo-label{background:#16764d;color:#fff}
+.duty-photo-button:disabled{opacity:.6;cursor:wait}
+.duty-admin-hint{margin:4px 0 15px}
+@media(max-width:500px){.entry{flex-wrap:wrap}.entry>div{min-width:95px}}
+
+/* Consistent portrait alignment regardless of attendance */
+#cards .card > img{margin-top:32px}
+#cards .card > .duty-badge{position:absolute;top:12px;left:50%;transform:translateX(-50%);margin:0;white-space:nowrap}
+
+/* Badge layout: one or two badges in a horizontal row */
+#cards .cast-badges, .preview-grid .cast-badges {
+  flex-direction:row;
+  flex-wrap:nowrap;
+  align-items:center;
+  gap:3px;
+  max-width:calc(100% + 12px);
+}
+#cards .cast-badge, .preview-grid .cast-badge {
+  font-size:9px;
+  padding:4px 5px;
+  white-space:nowrap;
+  line-height:1.15;
+}
+.cast-badge.pickup {
+  background:#8296e9;
+  color:#14224c;
+  border:1px solid #b5c4ff;
+}
+.cast-badge.new {
+  background:#9ce5cb;
+  color:#173c36;
+  border:1px solid #c5f8e5;
+}
+@media(max-width:520px){
+  #cards .cast-badge, .preview-grid .cast-badge {font-size:8px;padding:3px 4px}
+  #cards .cast-badges, .preview-grid .cast-badges {gap:2px}
+}
+
+/* 本日出勤専用エリア＋全キャスト一覧（出勤者も下段に再掲） */
+.attendance-section{margin-top:24px}
+.attendance-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.attendance-heading h2,.all-casts-heading{font-family:serif;color:#f0d392;letter-spacing:.035em}
+.attendance-heading h2{margin:0}
+.attendance-heading .small{padding:4px 12px;border:1px solid #8aaf9b;border-radius:99px;color:#b7efd0}
+.cast-section-divider{height:1px;background:linear-gradient(90deg,transparent,#c2a36a,transparent);margin:32px 0 22px}
+.all-casts-heading{margin:0 0 16px}
+#todayCards .card > img{margin-top:32px}
+#todayCards .card > .duty-badge{position:absolute;top:12px;left:50%;transform:translateX(-50%);margin:0;white-space:nowrap}
+#todayCards .cast-badges{flex-direction:row;flex-wrap:nowrap;align-items:center;gap:3px;max-width:calc(100% + 12px)}
+#todayCards .cast-badge{font-size:9px}
+
+.social-editor{margin:16px 0;padding:14px;border:1px solid #9e8251;border-radius:10px;background:#171c31}.social-editor h3{margin:0 0 4px;color:#f0d392}.social-links{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:14px auto}.social-link{display:inline-block;text-decoration:none;color:#f8e5b5;background:#34314b;border:1px solid #bca06a;border-radius:9px;padding:9px 12px;font-size:13px;font-weight:700;overflow-wrap:anywhere}.social-link:hover,.social-link:focus-visible{background:#534369;outline:2px solid #d9bd7d;outline-offset:1px}
+
+/* 宣材写真：各キャストごとのズームと位置調整 */
+.portrait-window{position:relative;display:block;overflow:hidden;border-radius:8px;background:#353954;width:100%;height:185px}
+.portrait-window img{display:block!important;width:100%!important;height:100%!important;max-width:none!important;margin:0!important;object-fit:cover;transform-origin:center;}
+#cards .portrait-window,#todayCards .portrait-window{margin-top:32px}
+.selected-item .portrait-window{height:125px}.top-selection .portrait-window{height:85px}
+@media(max-width:420px){.selected-item .portrait-window{height:95px}}
+.detail .portrait-window{width:min(100%,280px);height:320px;margin:0 auto;border-radius:10px}
+.preview-profile .portrait-window{width:min(100%,260px);height:300px;margin:0 auto;border-radius:10px}
+#doneCards .portrait-window{height:185px}
+.photo-adjust{margin:12px 0 18px;padding:14px;border:1px solid #b89b62;border-radius:12px;background:#171c31}
+.photo-adjust h3{margin:0 0 6px;color:#f0d392}.photo-adjust-preview{width:180px;margin:12px auto;text-align:center}
+.photo-adjust-preview .portrait-window{height:225px;border:2px solid #c4a66c}
+.photo-adjust-control{display:grid;grid-template-columns:90px 1fr 55px;align-items:center;gap:8px;margin:10px 0}
+.photo-adjust-control label{margin:0;font-size:13px}.photo-adjust-control input{margin:0;padding:0;accent-color:#e4c88d}.photo-adjust-control output{text-align:right;font-size:13px}
+.photo-adjust-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+.photo-adjust .small{text-align:center}
+
+:root{color:#f6e7d0;background:#16120f}body{background:radial-gradient(circle at top,#473629,#16120f 70%)}header{background:linear-gradient(120deg,#1e1712,#463223,#1c1714)}h1,h2,h3{color:#f2d4a1}.panel,.selected-panel,.attendance-section{border-color:#71553b;background-color:rgba(37,28,23,.88)}button{background:linear-gradient(135deg,#b08a53,#6b452c);color:#fff}button.secondary{background:#30251f;color:#e9d1b1}.card{background:#2c211d}.sub,.small{color:#cbb79c}.poster-tool{padding:18px;margin:0 0 24px;border:1px solid #a58150;border-radius:14px;background:linear-gradient(135deg,#382a21,#211a16)}.poster-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}.poster-tool label{display:block}.poster-tool input,.poster-tool select{width:100%;margin-top:6px}.poster-tool canvas{display:block}.poster-tool .hidden{display:none}
+</style></head><body><header><div class="sub">ASAGIRI · CAST ARCHIVE</div><h1>キャスト一覧</h1><div class="sub">和装メンズコンカフェ 朝霧</div></header><main class="wrap"><section id="list"><div class="topbar"><h2>キャスト一覧</h2><span id="pickCount" class="small">選択中：0 / 3人</span><button class="secondary" onclick="openAdmin()">管理</button></div><div class="selected-panel top-selection"><div class="topbar"><h3>選択中のキャスト</h3><span id="topSelectedCount" class="small">0 / 3人</span></div><div id="topSelectedPreview" class="selected-grid"></div><div class="center"><button id="topFinishBtn" onclick="finishSelection()" disabled>選択したキャストを確認（0 / 3）</button></div></div><section class="attendance-section" aria-labelledby="attendanceHeading"><div class="attendance-heading"><h2 id="attendanceHeading">✦ 本日出勤のキャスト</h2><span class="small">TODAY</span></div><div id="todayCards" class="grid"></div><p id="todayEmpty" class="small center">出勤キャストを読み込み中…</p></section><div class="cast-section-divider"></div><h2 class="all-casts-heading">✦ キャスト一覧</h2><div id="cards" class="grid"></div><p class="center sub" id="empty"></p><div class="selected-panel"><div class="topbar"><h3>選択中のキャスト</h3><span id="selectedCount" class="small">0 / 3人</span></div><div id="selectedPreview" class="selected-grid"></div><p class="small center">選択を取り消す場合は写真右上の × を押してください</p><div class="center"><button id="finishBtn" onclick="finishSelection()" disabled>選択したキャストを確認（0 / 3）</button></div></div></section><section id="detail" class="hidden detail panel center"><button class="secondary" onclick="show('list')">← 一覧へ</button><div id="detailImgBox"></div><h2 id="detailName"></h2><p id="detailHobby"></p><div id="detailFields" class="profile-fields"></div><div id="detailSocial" class="social-links"></div><div class="bio-box"><p id="detailIntro"></p></div><div id="gallerySection" class="bio-box hidden"><h3>PHOTO GALLERY</h3><div id="detailGallery" class="gallery-grid"></div></div><button onclick="confirmPick()">このキャストを選択 / 解除</button></section><section id="done" class="hidden detail panel center"><h2>選択したキャスト</h2><p>この画面をスタッフにお見せください</p><div id="doneCards" class="grid"></div><button onclick="resetPick()">最初の画面に戻る</button></section><section id="login" class="hidden detail panel"><h2>管理者ログイン</h2><p class="small">Firebaseに登録した管理者メールアドレスとパスワードでログインします。</p><label>メールアドレス<input id="adminEmail" type="email" autocomplete="username"></label><label>パスワード<input id="adminPassword" type="password" autocomplete="current-password"></label><button onclick="loginAdmin()">ログイン</button><button class="secondary" onclick="show('list')">戻る</button><p id="loginError" class="small"></p></section><section id="admin" class="hidden"><div class="topbar"><h2>朝霧 管理画面</h2><div><button class="secondary" onclick="show('list')">お客様画面へ</button><button class="secondary" onclick="logoutAdmin()">ログアウト</button></div></div><div class="panel"><div class="poster-tool"><h3>📣 本日の出勤画像を作成</h3><p class="small">出勤登録したキャストの宣材写真と名前を1枚の画像にまとめます。写真をタップして出勤登録後、画像を生成してください。</p><div class="poster-fields"><label>告知日<input type="date" id="posterDate"></label><label>画像のサイズ<select id="posterSize"><option value="1200">1200 × 675（X用）</option><option value="2400">2400 × 1350（高画質）</option></select></label></div><button type="button" onclick="generatePoster()">本日の出勤画像を生成</button><p id="posterStatus" class="small"></p><canvas id="posterCanvas" width="1200" height="675" style="width:100%;max-width:850px;display:none;border:1px solid #ae9062;border-radius:10px;margin-top:12px"></canvas><div id="posterDownload" class="hidden" style="margin-top:12px"><button type="button" onclick="downloadPoster()">PNG画像を保存</button></div></div><p class="small" id="syncStatus">接続中…</p><p class="small">編集内容はFirebaseに保存され、ほかの端末にも自動反映されます。大きい写真も自動で500KB以下に圧縮して保存します。</p><label>キャスト名<input id="name" maxlength="40"></label><label>趣味<input id="hobby" maxlength="100"></label><label>自己紹介<textarea id="intro" maxlength="500"></textarea></label><div class="field-row"><label>出身地<input id="hometown" maxlength="60" placeholder="東京都 / 出身地"></label><label>キャラ<input id="character" maxlength="80" placeholder="甘えん坊系など"></label></div><div class="social-editor"><h3>公式SNS（キャスト個人）</h3><p class="small">IDだけ入力すれば、プロフィールへのリンクを自動生成します。未入力のSNSは表示されません。</p><div class="field-row"><label>Instagram ID<input id="instagramId" maxlength="100" placeholder="@example"></label><label>TikTok ID<input id="tiktokId" maxlength="100" placeholder="@example"></label><label>X（Twitter）ID<input id="twitterId" maxlength="100" placeholder="@example"></label></div></div><label>誕生日（月・日のみ）<input id="birthday" type="text" placeholder="08-24" maxlength="5"></label><div class="field-row"><label>フレーム種類<select id="frameStyle"><option value="normal">ノーマル</option><option value="double">二重ライン</option><option value="corner">コーナー装飾</option><option value="elegant">エレガント</option><option value="royal">ロイヤル装飾</option><option value="floral">花飾り</option><option value="celestial">星と月の装飾</option><option value="lace">レース装飾</option></select></label><label>フレーム色<input id="frameColor" type="color" value="#b9a888"></label></div><label>左上マーク<select id="castMark"><option value="none">なし</option><option value="pickup">✦ PICK UP!</option><option value="new">🐣 NEW / 新人</option><option value="hot">🔥 HOT!</option></select></label><p class="small">🎂 BIRTHDAY は登録した誕生日の月に自動表示されます。ほかのマークと併用できます。</p><label>宣材写真<input id="photo" type="file" accept="image/*"></label><label>または写真URL（https://）<input id="photoUrl" type="url" placeholder="https://..."></label><div class="photo-adjust"><h3>📸 宣材写真の表示位置・拡大率</h3><p class="small">顔の大きさや体の位置を揃えられます。写真自体は加工せず、キャストごとに表示設定を保存します。</p><div class="photo-adjust-preview" id="photoAdjustPreview"></div><div class="photo-adjust-control"><label for="photoZoom">拡大率</label><input id="photoZoom" type="range" min="100" max="200" step="1" value="100"><output id="photoZoomValue">100%</output></div><div class="photo-adjust-control"><label for="photoX">左右位置</label><input id="photoX" type="range" min="0" max="100" step="1" value="50"><output id="photoXValue">50</output></div><div class="photo-adjust-control"><label for="photoY">上下位置</label><input id="photoY" type="range" min="0" max="100" step="1" value="50"><output id="photoYValue">50</output></div><div class="photo-adjust-actions"><button type="button" class="secondary" id="photoAdjustReset">↺ 中央に戻す</button></div><p class="small">左右・上下は画像の切り取り位置を調整します。お客様画面プレビューでも確認できます。</p></div><label>追加写真（最大5枚・複数選択可）<input id="galleryFiles" type="file" accept="image/*" multiple></label><p class="small">写真は自動圧縮されます。写真ごとの ↑ ↓ で並び替えできます。追加した写真も保存前に並び替え可能です。</p><div id="galleryManage" class="gallery-manage"></div><div class="attendance-options"><label><input id="onDuty" type="checkbox" style="width:auto"> 本日出勤</label><label><input id="pinnedRole" type="checkbox" style="width:auto"> 役職者（常に一覧上部に固定）</label></div><p class="small">表示順：役職者 → 本日出勤 → その他。各グループ内は従来の並び順です。出勤は管理画面で手動切替します。</p><label><input id="active" type="checkbox" checked style="width:auto"> お客様画面に表示する</label><button type="button" class="secondary" onclick="openAdminPreview()">👁 お客様画面をプレビュー</button><button onclick="saveMember()">保存する</button><button class="secondary" onclick="clearForm()">入力をクリア</button><p class="small">表示順：各キャストの ↑ ↓ ボタンで並べ替えできます。変更は全端末に自動反映されます。</p><p class="small duty-admin-hint">📸 キャストの写真をタップすると「出勤中／未出勤」を即時切り替えできます（保存ボタン不要）。</p><div id="entries"></div></div></section></main><div id="adminPreviewModal" class="admin-preview-modal hidden" role="dialog" aria-modal="true" aria-label="お客様画面プレビュー"><div class="admin-preview-content"><div class="topbar"><h2>お客様画面プレビュー</h2><button type="button" class="secondary" onclick="closeAdminPreview()">✕ 閉じる</button></div><p class="small">保存前の確認画面です。このプレビューだけではFirebaseに保存されません。</p><div class="preview-grid"><div><h3>一覧での表示</h3><div id="previewCard" class="card preview-card"></div></div><div class="preview-profile"><h3>個人プロフィール</h3><div id="previewPortraitBox"></div><h2 id="previewName"></h2><p id="previewHobby"></p><div id="previewFields" class="profile-fields"></div><div class="bio-box"><p id="previewIntro"></p></div><div id="previewGallerySection" class="bio-box hidden"><h3>PHOTO GALLERY</h3><div id="previewGallery" class="gallery-grid"></div></div></div></div></div></div><div id="photoModal" class="modal-photo hidden" onclick="this.classList.add('hidden')"><img id="modalImg" alt="拡大写真"></div><footer>ASAGIRI · Cast Selection</footer><script type="module">
+import {initializeApp} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js';
+import {getFirestore,collection,onSnapshot,doc,setDoc,updateDoc,deleteDoc,writeBatch} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js';
+import {getAuth,onAuthStateChanged,signInWithEmailAndPassword,signOut} from 'https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js';
+const app=initializeApp({apiKey:'AIzaSyD3xpbkLZ5AUkmhuT14VcCO48J4IECXQg8',authDomain:'asagiri-cast.firebaseapp.com',projectId:'asagiri-cast',storageBucket:'asagiri-cast.firebasestorage.app',messagingSenderId:'35242039790',appId:'1:35242039790:web:7f238fd548af097bbe96ff'});
+const db=getFirestore(app),auth=getAuth(app),casts=collection(db,'casts');
+let members=[],editing=null,selected=null,picks=[],user=null,loaded=false,editingGallery=[],pendingGalleryFiles=[],pendingGalleryUrls=[];
+const $=id=>document.getElementById(id);
+const placeholder='data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="300" height="400"><rect width="100%" height="100%" fill="#353954"/><text x="50%" y="50%" text-anchor="middle" fill="#c9b58a" font-size="24">NO PHOTO</text></svg>');
+const message=e=>{console.error(e);alert('Firebaseへの保存に失敗しました。管理者ログインや通信状態を確認してください。')};
+onAuthStateChanged(auth,u=>{user=u;if(!u&& !$('admin').classList.contains('hidden'))show('list')});
+onSnapshot(casts,snapshot=>{members=snapshot.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(a.order??0)-(b.order??0));loaded=true;picks=picks.filter(id=>members.some(m=>m.id===id&&m.active));render();if(!$('admin').classList.contains('hidden'))renderAdmin();$('syncStatus').textContent='同期済み · '+members.length+'名';},e=>{$('empty').textContent='読み込みに失敗しました。通信状態をご確認ください。';console.error(e)});
+function show(id){['list','detail','done','admin','login'].forEach(x=>$(x).classList.toggle('hidden',x!==id));if(id==='list')render();if(id==='admin')renderAdmin();window.scrollTo(0,0)}
+function node(tag,text){const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e}
+function frameClass(m){return 'frame-'+(['normal','double','corner','elegant','royal','floral','celestial','lace'].includes(m.frameStyle)?m.frameStyle:'normal')}
+function birthdayMonth(m){if(!m.birthday)return false;const n=Number(String(m.birthday).split('-')[0]);return n===Number(new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Tokyo',month:'numeric'}).format(new Date()))}
+function addBadges(card,m){const labels=[];if(m.castMark==='pickup')labels.push(['✦ PICK UP!','pickup']);if(m.castMark==='new')labels.push(['🐣 NEW','new']);if(m.castMark==='hot')labels.push(['🔥 HOT!','hot']);if(birthdayMonth(m))labels.push(['🎂 BIRTHDAY','birthday']);if(!labels.length)return;const wrap=node('div');wrap.className='cast-badges';for(const [label,type] of labels){const b=node('span',label);b.className='cast-badge '+type;wrap.append(b)}card.append(wrap)}
+function styleCard(c,m){c.classList.add(frameClass(m));c.style.setProperty('--frame',/^#[0-9a-f]{6}$/i.test(m.frameColor||'')?m.frameColor:'#b9a888');addBadges(c,m)}
+function displayPriority(m){return m.pinnedRole?0:m.onDuty?1:2}
+function sortedVisibleMembers(){return members.filter(m=>m.active).sort((a,b)=>displayPriority(a)-displayPriority(b)||(a.order??0)-(b.order??0))}
+function addDutyBadge(card,m){if(!m.onDuty)return;const badge=node('span','● 本日出勤');badge.className='duty-badge';card.append(badge)}
+function photoSettings(m){return {zoom:Math.min(200,Math.max(100,Number(m.photoZoom)||100)),x:Math.min(100,Math.max(0,Number(m.photoX??50))),y:Math.min(100,Math.max(0,Number(m.photoY??50)))}}
+function portraitWindow(m,src,alt){const w=node('div');w.className='portrait-window';const img=node('img');img.src=src||placeholder;img.alt=alt||'';const z=photoSettings(m);img.style.objectPosition=z.x+'% '+z.y+'%';img.style.transform='scale('+(z.zoom/100)+')';w.append(img);return w}
+function currentPhotoSettings(){return {photoZoom:Number($('photoZoom').value),photoX:Number($('photoX').value),photoY:Number($('photoY').value)}}
+function updatePhotoAdjust(){const m=currentPhotoSettings();for(const [id,v,suffix] of [['photoZoomValue',m.photoZoom,'%'],['photoXValue',m.photoX,''],['photoYValue',m.photoY,'']])$(id).textContent=v+suffix;const original=members.find(x=>x.id===editing)||{};const src=photoAdjustObjectUrl||$('photoUrl').value.trim()||original.photo||placeholder;const box=$('photoAdjustPreview');box.replaceChildren(portraitWindow(m,src,'宣材写真の表示プレビュー'))}
+let photoAdjustObjectUrl=null;
+function updatePhotoFilePreview(){if(photoAdjustObjectUrl)URL.revokeObjectURL(photoAdjustObjectUrl);photoAdjustObjectUrl=$('photo').files[0]?URL.createObjectURL($('photo').files[0]):null;updatePhotoAdjust()}
+for(const id of ['photoZoom','photoX','photoY'])$(id).addEventListener('input',updatePhotoAdjust);
+$('photo').addEventListener('change',updatePhotoFilePreview);$('photoUrl').addEventListener('input',updatePhotoAdjust);
+$('photoAdjustReset').onclick=()=>{setPhotoSettings({});updatePhotoAdjust()};
+function setPhotoSettings(m){$('photoZoom').value=m.photoZoom??100;$('photoX').value=m.photoX??50;$('photoY').value=m.photoY??50;updatePhotoAdjust()}
+function createCastCard(m){const c=node('div');c.className='card';styleCard(c,m);addDutyBadge(c,m);if(picks.includes(m.id))c.classList.add('picked');const img=portraitWindow(m,m.photo,m.name);const title=node('strong',m.name);c.append(img,title);c.onclick=()=>openDetail(m.id);return c}
+function render(){const box=$('cards'),today=$('todayCards');box.replaceChildren();today.replaceChildren();const all=members.filter(m=>m.active).sort((a,b)=>Number(!!b.pinnedRole)-Number(!!a.pinnedRole)||(a.order??0)-(b.order??0));all.forEach(m=>box.append(createCastCard(m)));const onDuty=members.filter(m=>m.active&&m.onDuty).sort((a,b)=>Number(!!b.pinnedRole)-Number(!!a.pinnedRole)||(a.order??0)-(b.order??0));onDuty.forEach(m=>today.append(createCastCard(m)));$('todayEmpty').textContent=!loaded?'出勤キャストを読み込み中…':onDuty.length?'':'現在、出勤登録されているキャストはいません。';$('todayEmpty').classList.toggle('hidden',loaded&&onDuty.length>0);renderSelectedPreview();$('topFinishBtn').textContent='選択したキャストを確認（'+picks.length+' / 3）';$('topFinishBtn').disabled=picks.length===0;$('pickCount').textContent='選択中：'+picks.length+' / 3人';$('finishBtn').textContent='選択したキャストを確認（'+picks.length+' / 3）';$('finishBtn').disabled=picks.length===0;$('empty').textContent=!loaded?'キャスト情報を読み込み中…':box.children.length?'':'現在ご案内できるキャストはいません。'}
+
+function renderSelectedPreview(){for(const [target,count] of [['selectedPreview','selectedCount'],['topSelectedPreview','topSelectedCount']]){const box=$(target);box.replaceChildren();$(count).textContent=picks.length+' / 3人';for(let i=0;i<3;i++){const m=members.find(x=>x.id===picks[i]);if(!m){const slot=node('div',(i+1)+'人目 未選択');slot.className='slot';box.append(slot);continue}const c=node('div');c.className='selected-item';const img=portraitWindow(m,m.photo,m.name);const name=node('strong',m.name);const remove=node('button','×');remove.className='remove';remove.setAttribute('aria-label',m.name+'の選択を解除');remove.onclick=()=>{picks=picks.filter(id=>id!==m.id);render()};c.append(img,name,remove);box.append(c)}}}
+function showPhoto(src){$('modalImg').src=src;$('photoModal').classList.remove('hidden')}
+
+function socialUrl(kind,id){const handle=String(id||'').trim().replace(/^@+/,'');if(!handle)return '';if(!/^[A-Za-z0-9._]+$/.test(handle))return '';const base={instagram:'https://www.instagram.com/',tiktok:'https://www.tiktok.com/@',twitter:'https://x.com/'}[kind];return base?base+encodeURIComponent(handle)+(kind==='instagram'?'/':''):''}
+function renderSocialLinks(target,m){const box=$(target);box.replaceChildren();for(const [label,key,kind,legacy] of [['Instagram','instagramId','instagram','instagramUrl'],['TikTok','tiktokId','tiktok','tiktokUrl'],['X (Twitter)','twitterId','twitter','twitterUrl']]){const id=String(m[key]||'').trim();let url=socialUrl(kind,id);if(!url&&!id&&m[legacy]){try{const parsed=new URL(m[legacy]);if(parsed.protocol==='https:'&&((kind==='instagram'&&['instagram.com','www.instagram.com'].includes(parsed.hostname))||(kind==='tiktok'&&['tiktok.com','www.tiktok.com'].includes(parsed.hostname))||(kind==='twitter'&&['x.com','www.x.com','twitter.com','www.twitter.com'].includes(parsed.hostname))))url=parsed.href}catch(e){}}if(!url)continue;const a=node('a');a.className='social-link';a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=label+' · '+(id?(id.startsWith('@')?id:'@'+id):'プロフィール')+' ↗';box.append(a)}}
+
+function openDetail(id){selected=members.find(m=>m.id===id);if(!selected)return;$('detailImgBox').replaceChildren(portraitWindow(selected,selected.photo,selected.name));$('detailName').textContent=selected.name;$('detailHobby').textContent=selected.hobby?'趣味：'+selected.hobby:'';$('detailIntro').textContent=selected.intro||'自己紹介は準備中です。';const fields=$('detailFields');fields.replaceChildren();for(const [label,value] of [['出身地',selected.hometown],['誕生日',selected.birthday?formatBirthday(selected.birthday):''],['キャラ',selected.character]]){if(value)fields.append(node('p',label+'：'+value))}renderSocialLinks('detailSocial',selected);const gal=$('detailGallery');gal.replaceChildren();const photos=Array.isArray(selected.gallery)?selected.gallery:[];$('gallerySection').classList.toggle('hidden',photos.length===0);photos.forEach(src=>{const img=node('img');img.src=src;img.alt=selected.name+'の追加写真';img.onclick=()=>showPhoto(src);gal.append(img)});show('detail')}
+function formatBirthday(s){const [m,d]=String(s).split('-');return Number(m)+'月'+Number(d)+'日'}
+function confirmPick(){if(!selected)return;const i=picks.indexOf(selected.id);if(i>=0){picks.splice(i,1)}else{if(picks.length>=3){alert('選べるキャストは3人までです。変更する場合は選択済みのキャストを解除してください。');return}picks.push(selected.id)}show('list')}
+function finishSelection(){if(!picks.length)return;const box=$('doneCards');box.replaceChildren();picks.forEach((id,i)=>{const m=members.find(x=>x.id===id);if(!m)return;const c=node('div');c.className='card';const img=portraitWindow(m,m.photo,m.name);c.append(img,node('strong',(i+1)+'人目：'+m.name));box.append(c)});show('done')}
+function resetPick(){selected=null;picks=[];show('list')}
+function openAdmin(){if(user)show('admin');else show('login')}
+async function loginAdmin(){const email=$('adminEmail').value.trim(),password=$('adminPassword').value;try{await signInWithEmailAndPassword(auth,email,password);$('adminPassword').value='';$('loginError').textContent='';show('admin')}catch(e){$('loginError').textContent='ログインできませんでした。メールアドレスとパスワードを確認してください。'}}
+async function logoutAdmin(){await signOut(auth);show('list')}
+
+let previewObjectUrls=[];
+function clearPreviewUrls(){previewObjectUrls.forEach(u=>URL.revokeObjectURL(u));previewObjectUrls=[]}
+function previewImage(file){if(!file)return null;const u=URL.createObjectURL(file);previewObjectUrls.push(u);return u}
+function closeAdminPreview(){$('adminPreviewModal').classList.add('hidden');clearPreviewUrls()}
+function openAdminPreview(){
+ clearPreviewUrls();
+ const original=members.find(m=>m.id===editing)||{};
+ const mainPhoto=previewImage($('photo').files[0])||$('photoUrl').value.trim()||original.photo||placeholder;
+ const gallery=[...editingGallery].slice(0,5).map(v=>typeof v==='string'?v:previewImage(v));
+ const m={name:$('name').value.trim()||'キャスト名',hobby:$('hobby').value.trim(),intro:$('intro').value.trim(),hometown:$('hometown').value.trim(),character:$('character').value.trim(),birthday:$('birthday').value.trim(),photo:mainPhoto,gallery,frameStyle:$('frameStyle').value,frameColor:$('frameColor').value,castMark:$('castMark').value,onDuty:$('onDuty').checked,pinnedRole:$('pinnedRole').checked,...currentPhotoSettings()};
+ const c=$('previewCard');c.className='card preview-card';c.style.removeProperty('--frame');c.replaceChildren();styleCard(c,m);addDutyBadge(c,m);
+ const img=portraitWindow(m,mainPhoto,m.name);c.append(img,node('strong',m.name));
+ $('previewPortraitBox').replaceChildren(portraitWindow(m,mainPhoto,m.name));$('previewName').textContent=m.name;$('previewHobby').textContent=m.hobby?'趣味：'+m.hobby:'';
+ const fields=$('previewFields');fields.replaceChildren();for(const [label,value] of [['出身地',m.hometown],['誕生日',/^\d{1,2}-\d{1,2}$/.test(m.birthday)?formatBirthday(m.birthday):''],['キャラ',m.character]]){if(value)fields.append(node('p',label+'：'+value))}
+ $('previewIntro').textContent=m.intro||'自己紹介は準備中です。';
+ const galleryBox=$('previewGallery');galleryBox.replaceChildren();$('previewGallerySection').classList.toggle('hidden',gallery.length===0);gallery.forEach(src=>{const photo=node('img');photo.src=src;photo.alt='追加写真';photo.onclick=()=>showPhoto(src);galleryBox.append(photo)});
+ $('adminPreviewModal').classList.remove('hidden');
+}
+$('adminPreviewModal').addEventListener('click',e=>{if(e.target===$('adminPreviewModal'))closeAdminPreview()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeAdminPreview();$('photoModal').classList.add('hidden')}});
+
+function clearForm(){editing=null;resetPendingGallery();editingGallery=[];['name','hobby','intro','photo','photoUrl','hometown','character','birthday','galleryFiles','instagramId','tiktokId','twitterId'].forEach(x=>$(x).value='');$('active').checked=true;$('onDuty').checked=false;$('pinnedRole').checked=false;$('frameStyle').value='normal';$('frameColor').value='#b9a888';$('castMark').value='none';$('photo').value='';if(photoAdjustObjectUrl){URL.revokeObjectURL(photoAdjustObjectUrl);photoAdjustObjectUrl=null}setPhotoSettings({});renderGalleryManage()}
+function resetPendingGallery(){pendingGalleryUrls.forEach(u=>URL.revokeObjectURL(u));pendingGalleryUrls=[];pendingGalleryFiles=[]}
+$('galleryFiles').addEventListener('change',()=>{
+ const incoming=Array.from($('galleryFiles').files||[]);
+ if(editingGallery.length+incoming.length>5){alert('追加写真は最大5枚までです');$('galleryFiles').value='';return}
+ incoming.forEach(file=>{editingGallery.push(file);pendingGalleryFiles.push(file)});
+ $('galleryFiles').value='';renderGalleryManage();
+});
+function renderGalleryManage(){
+ pendingGalleryUrls.forEach(u=>URL.revokeObjectURL(u));pendingGalleryUrls=[];
+ const box=$('galleryManage');box.replaceChildren();
+ editingGallery.forEach((src,i)=>{
+  const wrap=node('div');wrap.className='gallery-unit';
+  const img=node('img');img.src=typeof src==='string'?src:URL.createObjectURL(src);
+  if(typeof src!=='string')pendingGalleryUrls.push(img.src);
+  const controls=node('div');controls.className='gallery-buttons';
+  const up=node('button','↑'),down=node('button','↓'),del=node('button','×');
+  up.type=down.type=del.type='button';up.disabled=i===0;down.disabled=i===editingGallery.length-1;
+  up.onclick=()=>{[editingGallery[i-1],editingGallery[i]]=[editingGallery[i],editingGallery[i-1]];renderGalleryManage()};
+  down.onclick=()=>{[editingGallery[i+1],editingGallery[i]]=[editingGallery[i],editingGallery[i+1]];renderGalleryManage()};
+  del.title='写真を削除';del.onclick=()=>{editingGallery.splice(i,1);renderGalleryManage()};
+  controls.append(up,down,del);wrap.append(img,controls);box.append(wrap)
+ });
+}
+
+async function compressPhoto(file,maxBytes=500*1024){
+  if(!file.type.startsWith('image/')) throw new Error('画像ファイルを選択してください。');
+  const bitmap=await createImageBitmap(file);
+  try{
+    const canvas=document.createElement('canvas');
+    const ctx=canvas.getContext('2d');
+    if(!ctx) throw new Error('画像を圧縮できませんでした。');
+    for(const maxEdge of [1600,1200,1000,800,640,480,360]){
+      const scale=Math.min(1,maxEdge/Math.max(bitmap.width,bitmap.height));
+      canvas.width=Math.max(1,Math.round(bitmap.width*scale));
+      canvas.height=Math.max(1,Math.round(bitmap.height*scale));
+      ctx.fillStyle='#fff';
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+      ctx.drawImage(bitmap,0,0,canvas.width,canvas.height);
+      for(const quality of [0.88,0.75,0.6,0.45,0.3]){
+        const data=canvas.toDataURL('image/jpeg',quality);
+        if(data.length<=maxBytes) return data;
+      }
+    }
+    throw new Error('写真を圧縮できませんでした。別の写真をお試しください。');
+  }finally{
+    bitmap.close();
+  }
+}
+async function saveMember(){
+ if(!user){show('login');return}
+ const name=$('name').value.trim();if(!name){alert('名前を入力してください');return}
+ const birthday=$('birthday').value.trim();if(birthday){const match=/^(\d{1,2})-(\d{1,2})$/.exec(birthday);if(!match||Number(match[1])<1||Number(match[1])>12||Number(match[2])<1||Number(match[2])>new Date(2024,Number(match[1]),0).getDate()){alert('誕生日は 08-24 のように月-日で入力してください');return}}
+ const old=members.find(m=>m.id===editing),file=$('photo').files[0],url=$('photoUrl').value.trim();if(url&&!/^https:\/\//i.test(url)){alert('写真URLは https:// で始まるものを入力してください');return}
+ let photo=url||old?.photo||'';const gallery=[];const files=editingGallery.filter(v=>typeof v!=='string');if(editingGallery.length>5){alert('追加写真は最大5枚までです');return}
+ try{if(file){$('syncStatus').textContent='宣材写真を圧縮しています…';photo=await compressPhoto(file)}for(let i=0;i<editingGallery.length;i++){const item=editingGallery[i];if(typeof item==='string'){gallery.push(item);continue}$('syncStatus').textContent='追加写真を圧縮中 '+(i+1)+' / '+editingGallery.length;gallery.push(await compressPhoto(item,85*1024))}}catch(e){$('syncStatus').textContent='写真の圧縮に失敗しました';alert(e.message||'写真を圧縮できませんでした');return}
+ const id=editing||crypto.randomUUID();const m={name,hobby:$('hobby').value.trim(),intro:$('intro').value.trim(),active:$('active').checked,onDuty:$('onDuty').checked,pinnedRole:$('pinnedRole').checked,photo,order:old?.order??(members.length?Math.max(...members.map(x=>x.order??0))+1:0),hometown:$('hometown').value.trim(),character:$('character').value.trim(),birthday:birthday?birthday.split('-').map(x=>x.padStart(2,'0')).join('-'):'',frameStyle:$('frameStyle').value,frameColor:$('frameColor').value,castMark:$('castMark').value,...currentPhotoSettings(),gallery,instagramId:$('instagramId').value.trim(),instagramUrl:socialUrl('instagram',$('instagramId').value),tiktokId:$('tiktokId').value.trim(),tiktokUrl:socialUrl('tiktok',$('tiktokId').value),twitterId:$('twitterId').value.trim(),twitterUrl:socialUrl('twitter',$('twitterId').value)};
+ try{await setDoc(doc(db,'casts',id),m,{merge:true});clearForm();$('syncStatus').textContent='保存しました · 自動同期中'}catch(e){message(e)}
+}
+async function move(id,delta){if(!user)return;const from=members.findIndex(x=>x.id===id),to=from+delta;if(to<0||to>=members.length)return;const reordered=members.slice();[reordered[from],reordered[to]]=[reordered[to],reordered[from]];const batch=writeBatch(db);reordered.forEach((m,i)=>batch.update(doc(db,'casts',m.id),{order:i}));try{await batch.commit()}catch(e){message(e)}}
+function renderAdmin(){const box=$('entries');box.replaceChildren();members.forEach((m,index)=>{const row=node('div');row.className='entry'+(m.active?'':' is-hidden-cast');const dutyButton=node('button');dutyButton.type='button';dutyButton.className='duty-photo-button'+(m.onDuty?' is-duty':'');dutyButton.title=m.name+'：クリックで出勤状態を切り替え';dutyButton.setAttribute('aria-label',m.name+'の出勤を'+(m.onDuty?'解除':'設定'));dutyButton.setAttribute('aria-pressed',String(!!m.onDuty));const img=node('img');img.src=m.photo||placeholder;img.alt=m.name;const dutyLabel=node('span',m.onDuty?'● 出勤中':'○ 未出勤');dutyLabel.className='duty-photo-label';dutyButton.append(img,dutyLabel);dutyButton.onclick=async()=>{if(!user){show('login');return}dutyButton.disabled=true;try{await updateDoc(doc(db,'casts',m.id),{onDuty:!m.onDuty});$('syncStatus').textContent=m.name+' の出勤状態を更新しました'}catch(e){message(e)}finally{dutyButton.disabled=false}};const info=node('div');info.append(node('strong',m.name),node('div',(m.active?'表示中':'非表示')+(m.pinnedRole?' · ★役職者':'')+(m.onDuty?' · ●本日出勤':'')));const edit=node('button','編集');edit.onclick=()=>{editing=m.id;$('name').value=m.name;$('hobby').value=m.hobby||'';$('intro').value=m.intro||'';$('hometown').value=m.hometown||'';$('character').value=m.character||'';$('birthday').value=m.birthday||'';for(const k of ['instagramId','tiktokId','twitterId'])$(k).value=m[k]||'';$('frameStyle').value=m.frameStyle||'normal';$('frameColor').value=/^#[0-9a-f]{6}$/i.test(m.frameColor||'')?m.frameColor:'#b9a888';$('castMark').value=m.castMark||'none';resetPendingGallery();editingGallery=Array.isArray(m.gallery)?[...m.gallery]:[];renderGalleryManage();$('galleryFiles').value='';$('active').checked=!!m.active;$('onDuty').checked=!!m.onDuty;$('pinnedRole').checked=!!m.pinnedRole;$('photo').value='';$('photoUrl').value=m.photo?.startsWith('https://')?m.photo:'';if(photoAdjustObjectUrl){URL.revokeObjectURL(photoAdjustObjectUrl);photoAdjustObjectUrl=null}setPhotoSettings(m);window.scrollTo(0,0)};const visibility=node('button',m.active?'👁 表示中':'🙈 非表示');visibility.type='button';visibility.className='secondary visibility-toggle';visibility.title='お客様画面の表示・非表示を即時切替';visibility.onclick=async()=>{if(!user)return;visibility.disabled=true;try{await updateDoc(doc(db,'casts',m.id),{active:!m.active});$('syncStatus').textContent=m.name+' を'+(m.active?'非表示':'表示')+'に変更しました'}catch(e){message(e)}finally{visibility.disabled=false}};const controls=node('div');controls.className='order-controls';const up=node('button','↑');up.title='上に移動';const down=node('button','↓');down.title='下に移動';up.disabled=index===0;down.disabled=index===members.length-1;up.onclick=()=>move(m.id,-1);down.onclick=()=>move(m.id,1);controls.append(up,down);const del=node('button','削除');del.className='secondary';del.onclick=async()=>{if(confirm(m.name+'を削除しますか？')){try{await deleteDoc(doc(db,'casts',m.id))}catch(e){message(e)}}};row.append(dutyButton,info,visibility,controls,edit,del);box.append(row)})}
+
+function posterLayout(n){if(n<=5)return {cols:n,rows:1};if(n<=8)return {cols:4,rows:Math.ceil(n/4)};if(n<=12)return {cols:6,rows:Math.ceil(n/6)};if(n<=16)return {cols:8,rows:Math.ceil(n/8)};if(n<=24)return {cols:8,rows:Math.ceil(n/8)};const cols=Math.max(8,Math.ceil(Math.sqrt(n*3)));return {cols,rows:Math.ceil(n/cols)}}
+function posterRounded(ctx,x,y,w,h,r){ctx.beginPath();ctx.roundRect(x,y,w,h,Math.min(r,w/3,h/3))}
+function posterLoad(src){return new Promise(resolve=>{if(!src){resolve(null);return}const im=new Image();im.crossOrigin='anonymous';im.onload=()=>resolve(im);im.onerror=()=>resolve(null);im.src=src})}
+function posterFitText(ctx,text,maxWidth,base,min){let size=base;while(size>min){ctx.font=`600 ${size}px sans-serif`;if(ctx.measureText(text).width<=maxWidth)break;size-=1}ctx.font=`600 ${size}px sans-serif`;return size}
+async function generatePoster(){
+ if(!user){alert('管理者ログインが必要です');return}
+ const list=members.filter(m=>m.active&&m.onDuty).sort((a,b)=>Number(!!b.pinnedRole)-Number(!!a.pinnedRole)||(a.order??0)-(b.order??0));
+ if(!list.length){$('posterStatus').textContent='出勤キャストが0名です。先に出勤登録してください。';return}
+ const btn=document.querySelector('.poster-tool button');btn.disabled=true;$('posterStatus').textContent='画像を作成しています…';
+ try{
+ const canvas=$('posterCanvas'),W=Number($('posterSize').value),H=Math.round(W*9/16),scale=W/1200;canvas.width=W;canvas.height=H;
+ const ctx=canvas.getContext('2d');ctx.scale(scale,scale);const w=1200,h=675;
+ const bg=ctx.createLinearGradient(0,0,w,h);bg.addColorStop(0,'#100d0b');bg.addColorStop(.55,'#302117');bg.addColorStop(1,'#15100e');ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
+ ctx.strokeStyle='#9c7848';ctx.lineWidth=2;ctx.strokeRect(17,17,w-34,h-34);ctx.strokeStyle='#5d4831';ctx.strokeRect(24,24,w-48,h-48);
+ const day=$('posterDate').value||new Date().toLocaleDateString('sv-SE');const [yr,mo,da]=day.split('-');
+ ctx.textAlign='center';ctx.fillStyle='#cfb17e';ctx.font='500 15px sans-serif';ctx.fillText('JAPANESE CONCEPT CAFE  ·  ASAGIRI',600,58);
+ ctx.fillStyle='#f5d7a1';ctx.font='bold 45px serif';ctx.fillText('朝 霧',600,108);
+ ctx.font='600 22px sans-serif';ctx.fillText('本日の出勤キャスト',600,141);
+ ctx.fillStyle='#c4ad8a';ctx.font='16px sans-serif';ctx.fillText(`${yr}.${mo}.${da}   |   TODAY’S CAST`,600,166);
+ const {cols,rows}=posterLayout(list.length);const top=185,bottom=620,availH=bottom-top;const side=48,gapX=8,gapY=12;
+ const cellW=(1200-side*2-(cols-1)*gapX)/cols,cellH=(availH-(rows-1)*gapY)/rows;
+ const photos=await Promise.all(list.map(m=>posterLoad(m.photo)));
+ list.forEach((m,i)=>{
+ const r=Math.floor(i/cols),c=i%cols,itemsInRow=Math.min(cols,list.length-r*cols),rowWidth=itemsInRow*cellW+(itemsInRow-1)*gapX;
+ const x=(1200-rowWidth)/2+c*(cellW+gapX),y=top+r*(cellH+gapY),nameH=Math.max(20,Math.min(35,cellH*.22)),imgH=cellH-nameH;
+ ctx.fillStyle='#3e3027';posterRounded(ctx,x,y,cellW,cellH,5);ctx.fill();
+ ctx.save();posterRounded(ctx,x,y,cellW,imgH,4);ctx.clip();const im=photos[i];if(im){const z=photoSettings(m),zoom=z.zoom/100;const ratio=Math.max(cellW/im.width,imgH/im.height)*zoom;const dw=im.width*ratio,dh=im.height*ratio;const ix=x+(cellW-dw)*(z.x/100),iy=y+(imgH-dh)*(z.y/100);ctx.drawImage(im,ix,iy,dw,dh)}else{ctx.fillStyle='#574437';ctx.fillRect(x,y,cellW,imgH);ctx.fillStyle='#d0b996';ctx.font=`${Math.min(18,cellW*.17)}px sans-serif`;ctx.textAlign='center';ctx.fillText('NO PHOTO',x+cellW/2,y+imgH/2)}ctx.restore();
+ ctx.fillStyle='#241b17';ctx.fillRect(x,y+imgH,cellW,nameH);ctx.fillStyle='#f5dfb8';ctx.textAlign='center';const base=Math.min(20,Math.max(10,cellW*.16),nameH*.62);posterFitText(ctx,m.name||'キャスト',cellW-8,base,8);ctx.fillText(m.name||'キャスト',x+cellW/2,y+imgH+nameH*.69);
+ ctx.strokeStyle='#b99562';ctx.lineWidth=1.3;posterRounded(ctx,x,y,cellW,cellH,4);ctx.stroke();
+ });
+ ctx.fillStyle='#bda47e';ctx.textAlign='center';ctx.font='14px sans-serif';ctx.fillText(`和装メンズコンカフェ 朝霧   ·   出勤 ${list.length} 名`,600,650);
+ canvas.style.display='block';$('posterDownload').classList.remove('hidden');$('posterStatus').textContent=`${list.length}名の画像を生成しました（${W}×${H}px）。「PNG画像を保存」を押してください。`;
+ }catch(e){console.error(e);$('posterStatus').textContent='画像生成に失敗しました。写真URLの読み込み制限などをご確認ください。'}finally{btn.disabled=false}
+}
+function downloadPoster(){const canvas=$('posterCanvas');try{const a=document.createElement('a');a.download=`asagiri_today_${$('posterDate').value||'today'}.png`;a.href=canvas.toDataURL('image/png');a.click()}catch(e){alert('画像を保存できませんでした。外部写真URLのアクセス制限をご確認ください。')}}
+$('posterDate').value=new Date().toLocaleDateString('sv-SE');
+window.generatePoster=generatePoster;window.downloadPoster=downloadPoster;
+
+setInterval(()=>{if(!$('list').classList.contains('hidden'))render()},60*60*1000);updatePhotoAdjust();Object.assign(window,{show,openDetail,confirmPick,finishSelection,resetPick,openAdmin,loginAdmin,logoutAdmin,clearForm,saveMember,openAdminPreview,closeAdminPreview});render();
+</script></body></html>
