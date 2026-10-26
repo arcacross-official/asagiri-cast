@@ -302,7 +302,8 @@ async function generatePoster(){
  const side=33,gapX=7,gapY=10;
  const maxCellW=(1200-side*2-(cols-1)*gapX)/cols;
  const maxCellH=(availH-(rows-1)*gapY)/rows;
- const nameH=rows===1?31:Math.max(20,Math.min(27,maxCellH*.17));
+ const hasRoles=list.some(m=>m.pinnedRole);
+ const nameH=hasRoles?(rows===1?55:Math.max(39,Math.min(48,maxCellH*.26))):(rows===1?31:Math.max(20,Math.min(27,maxCellH*.17)));
  // 写真を可能な限り大きくする。写真の縦横比は維持し、枠内だけトリミング。
  const portraitRatio=rows===1?.59:.72;
  const cellW=Math.min(maxCellW,(maxCellH-nameH)*portraitRatio);
@@ -317,7 +318,8 @@ async function generatePoster(){
  const x=(1200-rowWidth)/2+c*(cellW+gapX),y=groupTop+r*(cellH+gapY);
  ctx.fillStyle='#3e3027';posterRounded(ctx,x,y,cellW,cellH,5);ctx.fill();
  ctx.save();posterRounded(ctx,x,y,cellW,imgH,4);ctx.clip();const im=photos[i];if(im){const z=photoSettings(m),zoom=z.zoom/100;const ratio=Math.max(cellW/im.width,imgH/im.height)*zoom;const dw=im.width*ratio,dh=im.height*ratio;const ix=x+(cellW-dw)*(z.x/100),iy=y+(imgH-dh)*(z.y/100);ctx.drawImage(im,ix,iy,dw,dh)}else{ctx.fillStyle='#574437';ctx.fillRect(x,y,cellW,imgH);ctx.fillStyle='#d0b996';ctx.font=`${Math.min(18,cellW*.17)}px sans-serif`;ctx.textAlign='center';ctx.fillText('NO PHOTO',x+cellW/2,y+imgH/2)}ctx.restore();
- ctx.fillStyle='#241b17';ctx.fillRect(x,y+imgH,cellW,nameH);ctx.fillStyle='#f5dfb8';ctx.textAlign='center';const base=Math.min(20,Math.max(10,cellW*.16),nameH*.62);posterFitText(ctx,m.name||'キャスト',cellW-8,base,8);ctx.fillText(m.name||'キャスト',x+cellW/2,y+imgH+nameH*.69);
+ ctx.fillStyle='#241b17';ctx.fillRect(x,y+imgH,cellW,nameH);
+ if(!m.pinnedRole){ctx.fillStyle='#f5dfb8';ctx.textAlign='center';const base=Math.min(20,Math.max(10,cellW*.16),nameH*.62);posterFitText(ctx,m.name||'キャスト',cellW-8,base,8);ctx.fillText(m.name||'キャスト',x+cellW/2,y+imgH+nameH*.69);}
  ctx.strokeStyle='#b99562';ctx.lineWidth=1.3;posterRounded(ctx,x,y,cellW,cellH,4);ctx.stroke();
  if(m.pinnedRole){
    ctx.save();
@@ -328,13 +330,14 @@ async function generatePoster(){
    for(const [px,py,sx,sy] of [[x+5,y+5,1,1],[x+cellW-5,y+5,-1,1],[x+5,y+cellH-5,1,-1],[x+cellW-5,y+cellH-5,-1,-1]]){
      ctx.beginPath();ctx.moveTo(px+sx*corner,py);ctx.lineTo(px,py);ctx.lineTo(px,py+sy*corner);ctx.stroke();
    }
-   ctx.fillStyle='#171411';ctx.fillRect(x+4,y+imgH+2,cellW-8,nameH-4);
+   ctx.fillStyle='#171411';ctx.fillRect(x+8,y+imgH+3,cellW-16,nameH-6);
    ctx.textAlign='center';ctx.fillStyle='#f9dda0';
    const role=m.roleName||'役職者';
-   posterFitText(ctx,role,cellW-12,Math.min(11,cellW*.12),8);
-   ctx.fillText(role,x+cellW/2,y+imgH+Math.max(10,nameH*.35));
-   posterFitText(ctx,m.name||'キャスト',cellW-10,Math.min(17,cellW*.16),9);
-   ctx.fillText(m.name||'キャスト',x+cellW/2,y+imgH+nameH*.82);
+   posterFitText(ctx,role,cellW-20,Math.min(12,cellW*.11),8);
+   ctx.fillText(role,x+cellW/2,y+imgH+nameH*.35);
+   ctx.strokeStyle='rgba(218,177,109,.65)';ctx.lineWidth=.7;ctx.beginPath();ctx.moveTo(x+15,y+imgH+nameH*.44);ctx.lineTo(x+cellW-15,y+imgH+nameH*.44);ctx.stroke();
+   posterFitText(ctx,m.name||'キャスト',cellW-20,Math.min(20,cellW*.16,nameH*.38),10);
+   ctx.fillText(m.name||'キャスト',x+cellW/2,y+imgH+nameH*.83);
    ctx.restore();
  }
  });
