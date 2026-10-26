@@ -270,12 +270,13 @@ async function generatePoster(){
  const bg=ctx.createLinearGradient(0,0,w,h);bg.addColorStop(0,'#100d0b');bg.addColorStop(.55,'#302117');bg.addColorStop(1,'#15100e');ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
  ctx.strokeStyle='#9c7848';ctx.lineWidth=2;ctx.strokeRect(17,17,w-34,h-34);ctx.strokeStyle='#5d4831';ctx.strokeRect(24,24,w-48,h-48);
  const day=$('posterDate').value||localDateISO();const [yr,mo,da]=day.split('-');
+ const eventTitle=$('posterEvent').value.trim(),eventDetail=$('posterEventDetail').value.trim();const hasEvent=!!(eventTitle||eventDetail);
  ctx.textAlign='center';ctx.fillStyle='#cfb17e';ctx.font='500 15px sans-serif';ctx.fillText('JAPANESE CONCEPT CAFE  ·  ASAGIRI',600,58);
  ctx.fillStyle='#f5d7a1';ctx.font='bold 45px serif';ctx.fillText('朝 霧',600,108);
  ctx.font='600 22px sans-serif';ctx.fillText('本日の出勤キャスト',600,141);
  ctx.fillStyle='#c4ad8a';ctx.font='16px sans-serif';ctx.fillText(`${yr}.${mo}.${da}   |   TODAY’S CAST`,600,166);
  if(hasEvent){ctx.fillStyle='#e4bd7d';posterFitText(ctx,eventTitle||'特別イベント',1050,22,12);ctx.fillText(eventTitle||'特別イベント',600,192);if(eventDetail){ctx.fillStyle='#f1dfc1';posterFitText(ctx,eventDetail,1070,15,10);ctx.fillText(eventDetail,600,215)}}
- const {cols,rows}=posterLayout(list.length);const eventTitle=$('posterEvent').value.trim(),eventDetail=$('posterEventDetail').value.trim();const hasEvent=!!(eventTitle||eventDetail);const top=hasEvent?229:185,bottom=hasEvent?575:591,availH=bottom-top;const side=48,gapX=8,gapY=12;
+ const {cols,rows}=posterLayout(list.length);const top=hasEvent?229:185,bottom=hasEvent?575:591,availH=bottom-top;const side=48,gapX=8,gapY=12;
  // Portrait-first cards: keep each photo close to 3:4 while fitting all casts in one landscape poster.
  const maxCellW=(1200-side*2-(cols-1)*gapX)/cols;
  const cellH=(availH-(rows-1)*gapY)/rows;
@@ -296,7 +297,7 @@ async function generatePoster(){
  ctx.fillStyle='#e0c29a';ctx.font='bold 17px sans-serif';ctx.fillText('営業時間 19:00〜24:00（LO：23:30）',600,644);
  ctx.fillStyle='#a88962';ctx.font='12px sans-serif';ctx.fillText(`本日出勤 ${list.length}名`,600,661);
  canvas.style.display='block';$('posterDownload').classList.remove('hidden');$('posterStatus').textContent=`${list.length}名の画像を生成しました（${W}×${H}px）。「PNG画像を保存」を押してください。`;
- }catch(e){console.error(e);$('posterStatus').textContent='画像生成に失敗しました。写真URLの読み込み制限などをご確認ください。'}finally{btn.disabled=false}
+ }catch(e){console.error(e);$('posterStatus').textContent='画像生成に失敗しました：'+(e?.message||'不明なエラー')}finally{btn.disabled=false}
 }
 function downloadPoster(){const canvas=$('posterCanvas');try{const a=document.createElement('a');a.download=`asagiri_today_${$('posterDate').value||'today'}.png`;a.href=canvas.toDataURL('image/png');a.click()}catch(e){alert('画像を保存できませんでした。外部写真URLのアクセス制限をご確認ください。')}}
 function localDateISO(){const d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')}
